@@ -1,0 +1,8 @@
+target/
+.settings/
+bin/
+gen/
+out/
+
+.classpath
+.project
