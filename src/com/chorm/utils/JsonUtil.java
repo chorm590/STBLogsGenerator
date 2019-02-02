@@ -173,17 +173,4 @@ public class JsonUtil {
         }
     }
 
-    public static void main(String[] args) throws Exception {
-        Date time = new Date();
-        Object json = fastToJson(time);
-        //Object json = JSON.toJSONStringWithDateFormat(time, "yyyy-MM-dd HH:mm:ss", SerializerFeature.WriteDateUseDateFormat);
-        System.out.println(json);
-        File outf = new File("out.chorm");
-        FileOutputStream fos = new FileOutputStream(outf);
-        fos.write(json.toString().getBytes(), 0, json.toString().getBytes().length);
-        
-        fos.close();
-        System.out.println("All end...");
-    }
-
 }
