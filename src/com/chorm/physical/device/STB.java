@@ -1,34 +1,39 @@
 package com.chorm.physical.device;
 
+import com.chorm.others.Operator;
+import com.chorm.others.Province;
 import com.chorm.physical.device.RemoteBase.RemoteListener;
-import com.chorm.physical.player.M301HPlayer;
 import com.chorm.physical.player.Player;
+import com.chorm.utils.Log;
 
+/**
+ * 这里的机顶盒有些这功能就足够了呀。
+ * chorm 2019-02-03 16:15.
+ * */
 public abstract class STB implements RemoteListener {
 
 	private static final String TAG = "STB";
 	
-	private final String serial;
-	private final String mac;
-	private final String hardwareVersion;
-	private String softwareVersion;
+	protected String serial;
+	protected String mac;
+	protected String hardwareVersion;
+	protected String softwareVersion;
+
+	protected Operator operator;
+	protected Province province;
 	
-	private Remote mRemote;
-	private Player mPlayer;
+	protected Remote mRemote;
+	protected Player mPlayer;
 	
-	protected STB(String serial, String mac, String hardwareVersion, String softwareVersion, Remote remote) {
+	protected STB(String serial, String mac, String hwv, String swv, Operator o, Province p, Remote r, Player p2) {
 		this.serial = serial;
 		this.mac = mac;
-		this.hardwareVersion = hardwareVersion;
-		this.softwareVersion = softwareVersion;
-		mRemote = remote;
-		
-		((RemoteBase)mRemote).registerSTBListener(this);
-		initializePlayer();
-	}
-	
-	private void initializePlayer() {
-		mPlayer = new M301HPlayer();
+		this.hardwareVersion = hwv;
+		this.softwareVersion = swv;
+		this.operator = o;
+		this.province = p;
+		this.mRemote = r;
+		this.mPlayer = p2;
 	}
 
 	/**
@@ -42,7 +47,7 @@ public abstract class STB implements RemoteListener {
 	 * 拨电源。
 	 * */
 	protected void powerOff() {
-		
+		// Do nothing.
 	}
 	
 	/**
@@ -55,6 +60,21 @@ public abstract class STB implements RemoteListener {
 	 * */
 	protected abstract void shutdown();
 	
+	/**
+	 * 向运营商请求节目列表。
+	 * */
+	protected abstract void requestProgramsList();
+	
+	/**
+	 * 适配遥控器。
+	 * */
+	public abstract void registerRemote();
+	
+	/**
+	 * 适配播放器。
+	 * */
+	public abstract void registerPlayer();
+	
 	public Remote getRemote() {
 		return mRemote;
 	}
@@ -64,9 +84,12 @@ public abstract class STB implements RemoteListener {
 	 * */
 	@Override
 	public void remote(int keyvalue, boolean isDown) {
+		Log.info(TAG, "remote:" + keyvalue + ":" + isDown);
 		if(isDown)
 			return;
 		//Only process key up event.
-		
+		// Let the player process the key event.
+		mPlayer.keyevent(keyvalue, isDown);
 	}
+	
 }

@@ -15,4 +15,6 @@ public interface Player {
 	
 	void stop();
 	
+	void keyevent(int keyvalue, boolean isDown);
+	
 }

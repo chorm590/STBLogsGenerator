@@ -53,25 +53,7 @@ public class PlayerEventRandomGenerator extends RandomBase {
 
 	@Override
 	public String generate() {
-//		int ri = 0;
-//		map.clear();
-//		long ss = System.currentTimeMillis();
-//		for(int i = 0; i < 100000000; i++) {
-//			ri = (int)(jutilRandom.nextDouble() * 10);
-//			if(map.containsKey(ri))
-//				map.put(ri, map.get(ri) + 1);
-//			else
-//				map.put(ri, 1);
-//		}
-//		Log.info(TAG, (System.currentTimeMillis() - ss) + "ms");
-//		System.out.println("---------------------------------------");
-//		Set<Integer> s = map.keySet();
-//		for(Integer i : s) {
-//			Log.info(TAG, i + " > " + map.get(i));
-//		}
-//		System.out.println("---------------------------------------");
-		
-		
+
 		
 		
 		return null;

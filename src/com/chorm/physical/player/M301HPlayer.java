@@ -35,4 +35,10 @@ public class M301HPlayer implements Player {
 
 	}
 
+	@Override
+	public void keyevent(int keyvalue, boolean isDown) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

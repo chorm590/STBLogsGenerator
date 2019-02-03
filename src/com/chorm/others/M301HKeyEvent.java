@@ -1,4 +1,4 @@
-package com.chorm.physical.device;
+package com.chorm.others;
 
 public enum M301HKeyEvent {
 
