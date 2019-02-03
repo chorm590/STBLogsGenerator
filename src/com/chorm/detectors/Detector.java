@@ -12,7 +12,9 @@ public interface Detector {
 
 	void report();
 	
-	void bootup(ProgramBeans pb);
+	void bootup(String serial, String mac);
+	
+	void shutdown(String serial, String mac);
 	
 	void playPrepare(ProgramBeans pb);
 	

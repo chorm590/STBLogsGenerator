@@ -1,6 +1,10 @@
 package com.chorm.physical.device;
 
+import com.chorm.utils.Log;
+
 public abstract class RemoteBase implements Remote {
+	
+	private static final String TAG = "RemoteBase";
 	
 	private RemoteListener remoteListener;
 	
@@ -22,6 +26,8 @@ public abstract class RemoteBase implements Remote {
 	public void launchIR(int keyvalue, boolean isDown) {
 		if(remoteListener != null)
 			remoteListener.remote(keyvalue, isDown);
+		else
+			Log.info(TAG, "remote listener null");
 	}
 	
 	public interface RemoteListener {

@@ -11,6 +11,9 @@ public class ProgramBeans {
 	private ProgramType pgtype;
 	private boolean isRecommended;
 	private VideoPixel pixel;
+	/**
+	 * 首页推荐的上线时间。
+	 * */
 	private long upLineTime;
 
 	public String getName() {
@@ -78,6 +81,22 @@ public class ProgramBeans {
 		if(upLineTime < 0)
 			throw new IllegalArgumentException("The upline time can't be negative.");
 		this.upLineTime = upLineTime;
+	}
+	
+	@Override
+	public String toString() {
+		return name + "";
+	}
+	
+	// HashSet 去重。
+	@Override
+	public int hashCode() {
+		return name.hashCode();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return name.equals(((ProgramBeans)obj).name);
 	}
 
 }

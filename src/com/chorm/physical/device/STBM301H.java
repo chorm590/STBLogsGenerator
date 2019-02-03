@@ -1,47 +1,39 @@
 package com.chorm.physical.device;
 
+import com.chorm.detectors.Detector;
 import com.chorm.others.Operator;
+import com.chorm.others.ProgramsOperator;
 import com.chorm.others.Province;
 import com.chorm.physical.player.Player;
 
+/**
+ * chorm on 2019-02-03 18:56,havn't have dinner.
+ * */
 public class STBM301H extends STB {
 	
 	private static final String TAG = "STBM301H";
 	
-	protected STBM301H(String serial, String mac, String hwv, String swv, Operator o, Province p, Remote r, Player p2) {
-		super(serial, mac, hwv, swv, o, p, r, p2);
-		// TODO Auto-generated constructor stub
+	protected STBM301H(String serial, String mac, String hwv,
+			String swv, Operator o, Province p,
+			Remote r, Player p2, Detector d) {
+		super(serial, mac, hwv, swv, o, p, r, p2, d);
+		requestProgramsList(); // Generate program list.
 	}
 
 	@Override
 	protected void bootup() {
-		// TODO Auto-generated method stub
 		//发送一个开机探针事件。
-		
+		mDetector.bootup(serial, mac);
 	}
 
 	@Override
 	protected void shutdown() {
-		// TODO Auto-generated method stub
-
+		mDetector.shutdown(serial, mac);
 	}
 
 	@Override
 	protected void requestProgramsList() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void registerRemote() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void registerPlayer() {
-		// TODO Auto-generated method stub
-		
+		programs = ProgramsOperator.getPrograms();
 	}
 
 }

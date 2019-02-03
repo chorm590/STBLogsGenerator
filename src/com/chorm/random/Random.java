@@ -10,11 +10,13 @@ package com.chorm.random;
  * 	4、地区编码随机数生成器。
  * 
  * */
-public interface Random {
+public interface Random<T> {
+	
+	java.util.Random mRandom = new java.util.Random();
 	
 	/**
 	 * 生成一组随机数。
 	 * 这个随机数一定是String类型的。
 	 * */
-	String generate();
+	T generate();
 }

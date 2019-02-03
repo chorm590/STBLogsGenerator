@@ -18,8 +18,25 @@ public class DetectorHangYan extends DetectorBase {
 	}
 
 	@Override
-	public void bootup(ProgramBeans pb) {
-		// Do nothing...
+	public void bootup(String serial, String mac) {
+		/*
+规范：事件类型|serial|mac|
+		 * */
+		append(NumericTools.int2hexString(DetectorEvent.BOOTUP.ordinal()));
+		append(serial);
+		append(mac);
+		report();
+	}
+	
+	@Override
+	public void shutdown(String serial, String mac) {
+		/*
+规范：事件类型|serial|mac|
+		 * */
+		append(NumericTools.int2hexString(DetectorEvent.SHUTDOWN.ordinal()));
+		append(serial);
+		append(mac);
+		report();
 	}
 
 	@Override
@@ -163,6 +180,5 @@ public class DetectorHangYan extends DetectorBase {
 		append(Boolean.toString(pb.isRecommended()));
 		append(Long.toString(pb.getUpLineTime()));
 	}
-	
 
 }

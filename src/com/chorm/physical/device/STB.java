@@ -1,6 +1,11 @@
 package com.chorm.physical.device;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import com.chorm.detectors.Detector;
 import com.chorm.others.Operator;
+import com.chorm.others.ProgramBeans;
 import com.chorm.others.Province;
 import com.chorm.physical.device.RemoteBase.RemoteListener;
 import com.chorm.physical.player.Player;
@@ -24,8 +29,13 @@ public abstract class STB implements RemoteListener {
 	
 	protected Remote mRemote;
 	protected Player mPlayer;
+	protected Detector mDetector;
 	
-	protected STB(String serial, String mac, String hwv, String swv, Operator o, Province p, Remote r, Player p2) {
+	protected Set<ProgramBeans> programs;
+	
+	protected STB(String serial, String mac, String hwv, String swv,
+			Operator o, Province p, Remote r, Player p2,
+			Detector d) {
 		this.serial = serial;
 		this.mac = mac;
 		this.hardwareVersion = hwv;
@@ -34,6 +44,7 @@ public abstract class STB implements RemoteListener {
 		this.province = p;
 		this.mRemote = r;
 		this.mPlayer = p2;
+		mDetector = d;
 	}
 
 	/**
@@ -65,18 +76,12 @@ public abstract class STB implements RemoteListener {
 	 * */
 	protected abstract void requestProgramsList();
 	
-	/**
-	 * 适配遥控器。
-	 * */
-	public abstract void registerRemote();
-	
-	/**
-	 * 适配播放器。
-	 * */
-	public abstract void registerPlayer();
-	
 	public Remote getRemote() {
 		return mRemote;
+	}
+	
+	public Detector getDetector() {
+		return mDetector;
 	}
 	
 	/**

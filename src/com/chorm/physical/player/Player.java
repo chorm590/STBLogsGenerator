@@ -1,19 +1,23 @@
 package com.chorm.physical.player;
 
+import com.chorm.others.ProgramBeans;
+
 /**
  * 提供正常播放和SEEK播放功能。
  * */
 public interface Player {
 
-	void prepare(String url);
+	void prepare(ProgramBeans pb);
 	
-	void start(String url, int position);
+	void start(ProgramBeans pb, int position);
 	
-	void pause();
+	void quit(ProgramBeans pb);
+
+	void seek(ProgramBeans pb);
 	
-	void resume(int position);
+	void pause(ProgramBeans pb);
 	
-	void stop();
+	void resume(ProgramBeans pb);
 	
 	void keyevent(int keyvalue, boolean isDown);
 	

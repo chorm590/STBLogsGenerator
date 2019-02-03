@@ -10,5 +10,7 @@ public enum DetectorEvent {
 	BUFFER_END    ,
 	PLAY_QUIT     ,
 	PLAY_REPORT   ,
+	BOOTUP,
+	SHUTDOWN,
 	PLAY_LIVE;
 }
