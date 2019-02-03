@@ -14,13 +14,6 @@
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
-					<archive>
-						<manifest>
-							<mainClass>com.chorm.JsonUtil</mainClass>
-							<addClasspath>true</addClasspath>
-						</manifest>
-
-					</archive>
 				</configuration>
 			</plugin>
 		</plugins>

@@ -9,11 +9,19 @@ import com.chorm.utils.Log;
 /**
  * 用于模拟机顶盒播放视频时产生的探针事件。
  * 
+ * 一般来说，有PLAY_START事件就要有PLAY_QUIT事件。 只有极少数仅有其中一个事件的情况。
+ * 
  * */
 public class PlayerEventRandomGenerator extends RandomBase {
 	
 	private static final String TAG = "PlayerEventRandomGenerator";
 	
+/*
+
+规范：事件类型|视频URL|节目名称|节目时长|节目画面质量|节目分类|是否首页推荐|首页推荐上线时间||||
+
+
+*/
 	private Map<Integer, Integer> map = new HashMap<>();
 	
 	public static final int PLAY_PREPARE = 1;
@@ -64,7 +72,19 @@ public class PlayerEventRandomGenerator extends RandomBase {
 //		System.out.println("---------------------------------------");
 		
 		
+		
+		
 		return null;
+	}
+	
+	private class ProgramRandomGenerator extends RandomBase {
+
+		@Override
+		public String generate() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
 	}
 
 }
