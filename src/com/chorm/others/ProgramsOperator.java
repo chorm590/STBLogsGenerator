@@ -14,13 +14,13 @@ public class ProgramsOperator {
 	
 	static {
 		ProgramsGenerator pg = new ProgramsGenerator();
-		for(int i = 0; i < 30; i++) {
+		for(int i = 0; i < 30000; i++) {
 			programs.add(pg.generate()); //pg name重复的节目不会被添加。
 		}
-//		Log.info(TAG, "Programs generated! " + programs.size());
-//		for(ProgramBeans pb : programs) {
-//			Log.info(TAG, pb.toString());
-//		}
+		Log.info(TAG, "Programs generated! " + programs.size());
+		for(ProgramBeans pb : programs) {
+			Log.info(TAG, pb.toString());
+		}
 	}
 	
 	public static Set<ProgramBeans> getPrograms(){

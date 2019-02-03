@@ -85,7 +85,8 @@ public class ProgramBeans {
 	
 	@Override
 	public String toString() {
-		return name + "";
+		return name + "\t" + url + "\t" + duration + "\t" + pgtype
+				+ "\t" + pixel + "\t" + isRecommended + "\t" + upLineTime;
 	}
 	
 	// HashSet 去重。

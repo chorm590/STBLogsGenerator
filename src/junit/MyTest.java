@@ -26,8 +26,8 @@ public class MyTest {
 	@Test
 	public void randomTest() {
 		Random rd = new Random();
-		for(int i  = 0;i<10;i++)
-			System.out.println(rd.nextInt(3));
+		for(int i  = 0;i<100;i++)
+			System.out.println(Math.sqrt(3)*rd.nextGaussian()+10);
 	}
 	
 	@Test

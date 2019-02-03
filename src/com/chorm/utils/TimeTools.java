@@ -13,4 +13,8 @@ public class TimeTools {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		return sdf.format(d);
 	}
+	
+	public static long currentSeconds() {
+		return System.currentTimeMillis() / 1000;
+	}
 }
