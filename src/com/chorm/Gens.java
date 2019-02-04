@@ -1,9 +1,5 @@
 package com.chorm;
 
-import java.util.Date;
-
-import com.chorm.utils.Log;
-
 import junit.MyTest;
 
 public class Gens {
@@ -13,7 +9,8 @@ public class Gens {
 	public static void main(String[] args) {
 		
 //		new MyTest().randomTest();
-		new MyTest().programsGenTest();
+//		new MyTest().programsGenTest();
+		new MyTest().playerTest();
 	}
 	
 	

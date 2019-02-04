@@ -11,6 +11,8 @@ public class ProgramBeans {
 	private ProgramType pgtype;
 	private boolean isRecommended;
 	private VideoPixel pixel;
+	private int currentDuration;
+	
 	/**
 	 * 首页推荐的上线时间。
 	 * */
@@ -68,6 +70,14 @@ public class ProgramBeans {
 		return upLineTime;
 	}
 	
+	public int getCurrentDuration() {
+		return currentDuration;
+	}
+
+	public void setCurrentDuration(int currentDuration) {
+		this.currentDuration = currentDuration;
+	}
+
 	/**
 	 * 将抽象的毫秒时间值转换成宜读的字符串形式日期。
 	 * */

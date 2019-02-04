@@ -131,8 +131,8 @@ public class ProgramsGenerator implements Random<ProgramBeans> {
 					break;
 			}
 			
-			if(i == 9)
-				Log.info(TAG, "fuck!!!!" +duration);
+//			if(i == 9)
+//				Log.info(TAG, "fuck!!!!" +duration);
 		}
 		
 		return duration;

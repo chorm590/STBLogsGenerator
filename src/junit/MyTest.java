@@ -9,6 +9,8 @@ import org.junit.Test;
 
 import com.chorm.others.ProgramBeans;
 import com.chorm.others.ProgramsOperator;
+import com.chorm.physical.player.M301HPlayer;
+import com.chorm.physical.player.Player;
 import com.chorm.random.PlayerEventRandomGenerator;
 import com.chorm.random.ProgramsGenerator;
 import com.chorm.utils.Log;
@@ -53,8 +55,14 @@ public class MyTest {
 		ProgramsOperator.getPrograms();
 	}
 	
-//	@Test
-//	public void programsGenTest() {
-//		new ProgramsGenerator();
-//	}
+	@Test
+	public void playerTest() {
+		Set<ProgramBeans> programs = ProgramsOperator.getPrograms();
+		Player mPlayer = new M301HPlayer(null); //传null一定要保证不要报空指针异常错误。
+		ProgramBeans pb = programs.iterator().next();
+		Log.info(TAG, pb.getName() + ":" + pb.getUrl() + "," + pb.getDuration());
+		mPlayer.prepare(pb);
+		mPlayer.start(pb, 0);
+		
+	}
 }

@@ -1,9 +1,9 @@
 package com.chorm.physical.device;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import com.chorm.detectors.Detector;
+import com.chorm.others.M301HKeyEvent;
 import com.chorm.others.Operator;
 import com.chorm.others.ProgramBeans;
 import com.chorm.others.Province;
@@ -32,6 +32,10 @@ public abstract class STB implements RemoteListener {
 	protected Detector mDetector;
 	
 	protected Set<ProgramBeans> programs;
+	/**
+	 * 机顶盒当前是否正在运行当中。
+	 * */
+	protected boolean isRunning;
 	
 	protected STB(String serial, String mac, String hwv, String swv,
 			Operator o, Province p, Remote r, Player p2,
@@ -51,6 +55,7 @@ public abstract class STB implements RemoteListener {
 	 * 插上电源。
 	 * */
 	protected void powerOn() {
+		isRunning = true;
 		bootup();
 	}
 	
@@ -84,6 +89,10 @@ public abstract class STB implements RemoteListener {
 		return mDetector;
 	}
 	
+	public Set<ProgramBeans> getPrograms(){
+		return programs;
+	}
+	
 	/**
 	 * 接收来自遥控器的事件。
 	 * */
@@ -93,8 +102,19 @@ public abstract class STB implements RemoteListener {
 		if(isDown)
 			return;
 		//Only process key up event.
-		// Let the player process the key event.
-		mPlayer.keyevent(keyvalue, isDown);
+		if(keyvalue == M301HKeyEvent.KEYCODE_POWER.ordinal()) {
+			if(isRunning) {
+				// 关机
+				shutdown();
+				isRunning = false;
+			}else {
+				// The box can't response key event while power off.So do nothing here.
+				// Do nothing.
+			}
+		}else {
+			// Let the player process the key event.
+			mPlayer.keyevent(keyvalue, isDown);
+		}
 	}
 	
 }
