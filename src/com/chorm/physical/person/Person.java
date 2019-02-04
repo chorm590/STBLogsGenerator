@@ -6,21 +6,31 @@ import java.util.Set;
 import com.chorm.others.ProgramType;
 import com.chorm.physical.device.STB;
 
-public abstract class Person {
+public class Person {
 	
+	private static final String TAG ="Person";
 	
 	private Set<ProgramType> favLabels = new HashSet<>();
+	private Family mFamily;
+	
+	public Person(Family family) {
+		mFamily = family;
+	}
 
 	/**
 	 * 每一个人都有他们的机顶盒子。
 	 * 都可以操纵他们的机顶盒子。
 	 * */
-	public abstract STB getSTB();
+	public STB getSTB() {
+		
+	}
 	
-	public abstract void setFavLabel();
+	public void setFavLabel() {
+		
+	}
 	
 	public Set<ProgramType> getFavLabel(){
 		return favLabels;
 	}
-	
+
 }

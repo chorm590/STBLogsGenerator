@@ -1,6 +1,7 @@
 package com.chorm.physical.player;
 
 import java.util.Timer;
+import java.util.TimerTask;
 
 import com.chorm.others.M301HKeyEvent;
 import com.chorm.others.ProgramBeans;
@@ -30,7 +31,7 @@ public class M301HPlayer extends PlayerBase {
 	private StateMachine sm = StateMachine.STOPPED;
 	private Timer mTimer;
 	
-	public M301HPlayer(STB stb) {
+	public void setSTB(STB stb) {
 		this.stb = stb;
 	}
 	
@@ -38,6 +39,8 @@ public class M301HPlayer extends PlayerBase {
 		PREPARED,
 		PLAYING,
 		PAUSED,
+		SEEKING,
+		BUFFERING,
 		STOPPED;
 	}
 
@@ -64,7 +67,11 @@ public class M301HPlayer extends PlayerBase {
 			}break;
 			case KEYCODE_CENTER:{
 				// Pick a program to play... hehe.
-				play();
+				if(sm == StateMachine.SEEKING) {
+					start(currentPb, currentPb.getCurrentPosition());
+				}else {
+					play();
+				}
 			}break;
 			default:{
 				Log.info(TAG, "Invalid keyevent:" + keyvalue + ",down:" + isDown);
@@ -73,9 +80,8 @@ public class M301HPlayer extends PlayerBase {
 	}
 
 	private void play() {
-		// TODO Auto-generated method stub
-		
 		// 1. pick a program.
+		
 		
 		// 2. prepare to play.
 		
@@ -89,55 +95,59 @@ public class M301HPlayer extends PlayerBase {
 	 * @param position 
 	 * */
 	private void playVideo(ProgramBeans pb, int position) {
-		if(sm != StateMachine.PREPARED) {
-			return;
+		if(sm == StateMachine.PREPARED ||
+				sm == StateMachine.SEEKING) {
+			counter = 0;
+			//Go to play video.
+			if(mTimer != null)
+				mTimer.cancel(); //Guarantee only 1 TimerTask running in one player daemon.
+			mTimer = new Timer();
+			mTimer.schedule(this, 256, 1000);
+			pb.setCurrentPosition(position);
+			currentPb = pb;
+			Log.info(TAG, pb.getName() + ":" + pb.getUrl() + " is playing...");
 		}
-		counter = 0;
-		//Go to play video.
-		if(mTimer != null)
-			mTimer.cancel(); //Guarantee only 1 TimerTask running in one player daemon.
-		mTimer = new Timer();
-		mTimer.schedule(this, 256, 1000);
-		pb.setCurrentDuration(position);
-		currentPb = pb;
-		Log.info(TAG, pb.getName() + ":" + pb.getUrl() + " is playing...");
 	}
 
 	@Override
 	public void prepare(ProgramBeans pb) {
 		sm = StateMachine.PREPARED;
-//		stb.getDetector().playPrepare(pb);
+		stb.getDetector().playPrepare(pb);
 	}
 
 	@Override
 	public void start(ProgramBeans pb, int position) {
 		playVideo(pb, position);
 		sm = StateMachine.PLAYING;
-//		stb.getDetector().playStart(pb, position);
+		stb.getDetector().playStart(pb, position);
 	}
 
 	@Override
 	public void quit(ProgramBeans pb) {
 		sm = StateMachine.STOPPED;
-//		stb.getDetector().playQuit(pb, currentPb.getCurrentDuration());
+		stb.getDetector().playQuit(pb, currentPb.getCurrentPosition());
 	}
 
 	@Override
 	public void seek(ProgramBeans pb) {
-		// TODO Auto-generated method stub
-		sm = StateMachine.PAUSED;
-//		stb.getDetector().see
+		if(sm == StateMachine.PLAYING) {
+			sm = StateMachine.SEEKING;
+			mTimer.cancel();
+			mTimer = null;
+			mTimer = new Timer();
+			mTimer.schedule(new SeekTimerTask(), 0, 1000);
+			stb.getDetector().seekStart(pb, currentPb.getCurrentPosition());
+			Log.info(TAG, "Seeking...");
+		}
 	}
 
 	@Override
 	public void pause(ProgramBeans pb) {
-		// TODO Auto-generated method stub
 		sm = StateMachine.PAUSED;
 	}
 
 	@Override
 	public void resume(ProgramBeans pb) {
-		// TODO Auto-generated method stub
 		sm = StateMachine.PREPARED;
 	}
 	
@@ -152,16 +162,35 @@ public class M301HPlayer extends PlayerBase {
 	@Override
 	public void run() {
 		Log.info(TAG, "Playing " + currentPb.getName() + "," + Integer.toString(counter++));
-		currentPb.setCurrentDuration(currentPb.getCurrentDuration() + 1000);
-		if(currentPb.getCurrentDuration() >= currentPb.getDuration()) {
+		currentPb.setCurrentPosition(currentPb.getCurrentPosition() + 1000);
+		if(currentPb.getCurrentPosition() >= currentPb.getDuration()) {
 			// Current video end.
-			currentPb.setCurrentDuration(currentPb.getDuration()); //Gracefully report to detector server.
+			currentPb.setCurrentPosition(currentPb.getDuration()); //Gracefully report to detector server.
+			Log.info(TAG, "duration:" + Integer.toString(currentPb.getCurrentPosition()));
 			quit(currentPb);
 			mTimer.cancel();
 			mTimer = null;
 		}else {
-			Log.info(TAG, "duration:" + Integer.toString(currentPb.getCurrentDuration()));
+			Log.info(TAG, "duration:" + Integer.toString(currentPb.getCurrentPosition()));
 		}
+	}
+	
+	private class SeekTimerTask extends TimerTask {
+
+		@Override
+		public void run() {
+			// 3 seconds per seek time.
+			currentPb.setCurrentPosition(currentPb.getCurrentPosition() + 3000);
+			Log.info(TAG, "SeekTimerTask," + currentPb.getCurrentPosition());
+			if(currentPb.getCurrentPosition() >= currentPb.getDuration()) {
+				currentPb.setCurrentPosition(currentPb.getDuration());
+				// Force end the seek state.
+				mTimer.cancel();
+				mTimer = null;
+				Log.info(TAG, "Seek to end of the video." + currentPb.getCurrentPosition());
+			}
+		}
+		
 	}
 
 }

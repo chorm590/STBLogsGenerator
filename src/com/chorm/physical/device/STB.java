@@ -4,7 +4,7 @@ import java.util.Set;
 
 import com.chorm.detectors.Detector;
 import com.chorm.others.M301HKeyEvent;
-import com.chorm.others.Operator;
+import com.chorm.others.APKOperator;
 import com.chorm.others.ProgramBeans;
 import com.chorm.others.Province;
 import com.chorm.physical.device.RemoteBase.RemoteListener;
@@ -24,7 +24,7 @@ public abstract class STB implements RemoteListener {
 	protected String hardwareVersion;
 	protected String softwareVersion;
 
-	protected Operator operator;
+	protected APKOperator operator;
 	protected Province province;
 	
 	protected Remote mRemote;
@@ -38,7 +38,7 @@ public abstract class STB implements RemoteListener {
 	protected boolean isRunning;
 	
 	protected STB(String serial, String mac, String hwv, String swv,
-			Operator o, Province p, Remote r, Player p2,
+			APKOperator o, Province p, Remote r, Player p2,
 			Detector d) {
 		this.serial = serial;
 		this.mac = mac;
@@ -91,6 +91,10 @@ public abstract class STB implements RemoteListener {
 	
 	public Set<ProgramBeans> getPrograms(){
 		return programs;
+	}
+	
+	public Player getPlayer() {
+		return mPlayer;
 	}
 	
 	/**

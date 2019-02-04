@@ -12,7 +12,7 @@ import com.chorm.utils.TimeTools;
 public class DetectorHangYan extends DetectorBase {
 	
 	
-	protected DetectorHangYan() {
+	public DetectorHangYan() {
 		super(DetectorType.HANGYAN);
 		serverUrl = "/home/chorm/detector/" + TimeTools.getDate() + "/"; //Just a directory.
 	}

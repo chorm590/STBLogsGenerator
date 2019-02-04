@@ -11,7 +11,7 @@ public class ProgramBeans {
 	private ProgramType pgtype;
 	private boolean isRecommended;
 	private VideoPixel pixel;
-	private int currentDuration;
+	private int currentPosition;
 	
 	/**
 	 * 首页推荐的上线时间。
@@ -70,12 +70,12 @@ public class ProgramBeans {
 		return upLineTime;
 	}
 	
-	public int getCurrentDuration() {
-		return currentDuration;
+	public int getCurrentPosition() {
+		return currentPosition;
 	}
 
-	public void setCurrentDuration(int currentDuration) {
-		this.currentDuration = currentDuration;
+	public void setCurrentPosition(int currentDuration) {
+		this.currentPosition = currentDuration;
 	}
 
 	/**

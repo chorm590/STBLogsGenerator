@@ -14,6 +14,15 @@ public class TimeTools {
 		return sdf.format(d);
 	}
 	
+	/**
+	 * @return eg: 190203
+	 * */
+	public static String getDate2() {
+		Date d = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
+		return sdf.format(d);
+	}
+	
 	public static long currentSeconds() {
 		return System.currentTimeMillis() / 1000;
 	}

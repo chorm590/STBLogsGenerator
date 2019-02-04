@@ -1,7 +1,7 @@
 package com.chorm.physical.device;
 
 import com.chorm.detectors.Detector;
-import com.chorm.others.Operator;
+import com.chorm.others.APKOperator;
 import com.chorm.others.ProgramsOperator;
 import com.chorm.others.Province;
 import com.chorm.physical.player.Player;
@@ -13,8 +13,8 @@ public class STBM301H extends STB {
 	
 	private static final String TAG = "STBM301H";
 	
-	protected STBM301H(String serial, String mac, String hwv,
-			String swv, Operator o, Province p,
+	public STBM301H(String serial, String mac, String hwv,
+			String swv, APKOperator o, Province p,
 			Remote r, Player p2, Detector d) {
 		super(serial, mac, hwv, swv, o, p, r, p2, d);
 		requestProgramsList(); // Generate program list.

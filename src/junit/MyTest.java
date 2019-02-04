@@ -7,6 +7,7 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import com.chorm.factory.Unionman;
 import com.chorm.others.ProgramBeans;
 import com.chorm.others.ProgramsOperator;
 import com.chorm.physical.player.M301HPlayer;
@@ -57,12 +58,18 @@ public class MyTest {
 	
 	@Test
 	public void playerTest() {
-		Set<ProgramBeans> programs = ProgramsOperator.getPrograms();
-		Player mPlayer = new M301HPlayer(null); //传null一定要保证不要报空指针异常错误。
-		ProgramBeans pb = programs.iterator().next();
-		Log.info(TAG, pb.getName() + ":" + pb.getUrl() + "," + pb.getDuration());
-		mPlayer.prepare(pb);
-		mPlayer.start(pb, 0);
+//		Set<ProgramBeans> programs = ProgramsOperator.getPrograms();
+//		Player mPlayer = new M301HPlayer(null); //传null一定要保证不要报空指针异常错误。
+//		ProgramBeans pb = programs.iterator().next();
+//		Log.info(TAG, pb.getName() + ":" + pb.getUrl() + "," + pb.getDuration());
+//		mPlayer.prepare(pb);
+//		mPlayer.start(pb, 0);
 		
+	}
+	
+	@Test
+	public void serialTest() {
+//		new Unionman().createSerial(null);
+//		new Unionman().createMac(null);
 	}
 }
