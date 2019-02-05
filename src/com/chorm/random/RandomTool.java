@@ -11,4 +11,12 @@ public class RandomTool {
 		Random mRandom = new Random();
 		return mRandom.nextInt(uplimit) + downlimit;
 	}
+	
+	/**
+	 * @return return a value between 0 ~ 100. [0,100].
+	 * */
+	public static int randomPercentage() {
+		Random mRandom = new Random();
+		return mRandom.nextInt(101);
+	}
 }

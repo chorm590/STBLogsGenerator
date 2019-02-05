@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.chorm.detectors.Detector;
 import com.chorm.detectors.DetectorHangYan;
-import com.chorm.others.APKOperator;
+import com.chorm.operator.APKOperator;
 import com.chorm.others.Province;
 import com.chorm.physical.device.M301HRemote;
 import com.chorm.physical.device.Remote;
@@ -20,7 +20,7 @@ public class Unionman extends STBFactory {
 	private final StringBuilder sb = new StringBuilder();
 
 	@Override
-	List<STB> createSTB(int amount) {
+	public List<STB> createSTB(int amount) {
 		STB stb;
 		for(int i = 0; i < amount; i++) {
 			stb = new STBM301H(createSerial(stbList), createMac(stbList), createHardwareVersion(),

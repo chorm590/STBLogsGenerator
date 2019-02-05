@@ -1,8 +1,8 @@
 package com.chorm.physical.device;
 
 import com.chorm.detectors.Detector;
-import com.chorm.others.APKOperator;
-import com.chorm.others.ProgramsOperator;
+import com.chorm.operator.APKOperator;
+import com.chorm.operator.ProgramsOperator;
 import com.chorm.others.Province;
 import com.chorm.physical.player.Player;
 

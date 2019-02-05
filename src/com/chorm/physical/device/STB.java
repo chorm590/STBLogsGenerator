@@ -3,8 +3,8 @@ package com.chorm.physical.device;
 import java.util.Set;
 
 import com.chorm.detectors.Detector;
+import com.chorm.operator.APKOperator;
 import com.chorm.others.M301HKeyEvent;
-import com.chorm.others.APKOperator;
 import com.chorm.others.ProgramBeans;
 import com.chorm.others.Province;
 import com.chorm.physical.device.RemoteBase.RemoteListener;

@@ -1,8 +1,9 @@
-package com.chorm.others;
+package com.chorm.operator;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import com.chorm.others.ProgramBeans;
 import com.chorm.random.ProgramsGenerator;
 import com.chorm.utils.Controls;
 import com.chorm.utils.Log;

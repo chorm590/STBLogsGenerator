@@ -8,8 +8,8 @@ import java.util.Set;
 import org.junit.Test;
 
 import com.chorm.factory.Unionman;
+import com.chorm.operator.ProgramsOperator;
 import com.chorm.others.ProgramBeans;
-import com.chorm.others.ProgramsOperator;
 import com.chorm.physical.player.M301HPlayer;
 import com.chorm.physical.player.Player;
 import com.chorm.random.PlayerEventRandomGenerator;

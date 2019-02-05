@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.chorm.detectors.Detector;
-import com.chorm.others.APKOperator;
+import com.chorm.operator.APKOperator;
 import com.chorm.others.Province;
 import com.chorm.physical.device.Remote;
 import com.chorm.physical.device.STB;
@@ -18,7 +18,7 @@ public abstract class STBFactory {
 		stbList = new ArrayList<>();
 	}
 
-	abstract List<STB> createSTB(int amount);
+	public abstract List<STB> createSTB(int amount);
 	
 	protected abstract String createSerial(List<STB> stbList);
 	
