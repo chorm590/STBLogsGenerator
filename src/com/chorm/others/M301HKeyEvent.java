@@ -4,10 +4,11 @@ public enum M301HKeyEvent {
 
 	KEYCODE_DOWN,
 	KEYCODE_UP,
-	KEYCODE_LEFT,
+	KEYCODE_LEFT,  // 2  -- 3
 	KEYCODE_RIGHT,
-	KEYCODE_CENTER,
-	KEYCODE_POWER;
+	KEYCODE_CENTER, //4  -- 5
+	KEYCODE_POWER,
+	KEYCODE_BACK;
 	
 	public static M301HKeyEvent parse(int keyvalue) {
 		switch(keyvalue) {
@@ -23,6 +24,8 @@ public enum M301HKeyEvent {
 				return KEYCODE_CENTER;
 			case 5:
 				return KEYCODE_POWER;
+			case 6:
+				return KEYCODE_BACK;
 		}
 		
 		return null;

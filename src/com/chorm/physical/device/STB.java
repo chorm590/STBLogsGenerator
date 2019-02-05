@@ -54,7 +54,7 @@ public abstract class STB implements RemoteListener {
 	/**
 	 * 插上电源。
 	 * */
-	protected void powerOn() {
+	public void powerOn() {
 		isRunning = true;
 		bootup();
 	}
@@ -97,12 +97,16 @@ public abstract class STB implements RemoteListener {
 		return mPlayer;
 	}
 	
+	public boolean isRuning() {
+		return isRunning;
+	}
+	
 	/**
 	 * 接收来自遥控器的事件。
 	 * */
 	@Override
-	public void remote(int keyvalue, boolean isDown) {
-		Log.info(TAG, "remote:" + keyvalue + ":" + isDown);
+	public void remote(int keyvalue, boolean isDown, Object obj) {
+		Log.info(TAG, "remote:" + keyvalue + ":" + isDown + ":" + obj);
 		if(isDown)
 			return;
 		//Only process key up event.
@@ -117,7 +121,7 @@ public abstract class STB implements RemoteListener {
 			}
 		}else {
 			// Let the player process the key event.
-			mPlayer.keyevent(keyvalue, isDown);
+			mPlayer.keyevent(keyvalue, isDown, obj);
 		}
 	}
 	

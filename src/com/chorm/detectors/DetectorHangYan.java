@@ -22,7 +22,7 @@ public class DetectorHangYan extends DetectorBase {
 		/*
 规范：事件类型|serial|mac|
 		 * */
-		append(NumericTools.int2hexString(DetectorEvent.BOOTUP.ordinal()));
+		append(NumericTools.int2String(DetectorEvent.BOOTUP.ordinal()));
 		append(serial);
 		append(mac);
 		report();
@@ -33,7 +33,7 @@ public class DetectorHangYan extends DetectorBase {
 		/*
 规范：事件类型|serial|mac|
 		 * */
-		append(NumericTools.int2hexString(DetectorEvent.SHUTDOWN.ordinal()));
+		append(NumericTools.int2String(DetectorEvent.SHUTDOWN.ordinal()));
 		append(serial);
 		append(mac);
 		report();
@@ -44,7 +44,7 @@ public class DetectorHangYan extends DetectorBase {
 		/*
 规范：事件类型|视频URL|节目名称|节目时长|节目画面质量|节目分类|是否首页推荐|首页推荐上线时间|
 		 * */
-		append(NumericTools.int2hexString(DetectorEvent.PLAY_PREPARE.ordinal()));
+		append(NumericTools.int2String(DetectorEvent.PLAY_PREPARE.ordinal()));
 		programWrapper(pb);
 		report();
 	}
@@ -54,7 +54,7 @@ public class DetectorHangYan extends DetectorBase {
 		/*
 规范：事件类型|视频URL|节目名称|节目时长|节目画面质量|节目分类|是否首页推荐|首页推荐上线时间|播放位置|
 		 * */
-		append(NumericTools.int2hexString(DetectorEvent.PLAY_START.ordinal()));
+		append(NumericTools.int2String(DetectorEvent.PLAY_START.ordinal()));
 		programWrapper(pb);
 		append(Integer.toString(position));
 		report();
@@ -65,7 +65,7 @@ public class DetectorHangYan extends DetectorBase {
 		/*
 规范：事件类型|视频URL|节目名称|节目时长|节目画面质量|节目分类|是否首页推荐|首页推荐上线时间|播放位置|
 		 * */
-		append(NumericTools.int2hexString(DetectorEvent.PLAY_QUIT.ordinal()));
+		append(NumericTools.int2String(DetectorEvent.PLAY_QUIT.ordinal()));
 		programWrapper(pb);
 		append(Integer.toString(position));
 		report();
@@ -76,7 +76,7 @@ public class DetectorHangYan extends DetectorBase {
 		/*
 规范：事件类型|视频URL|节目名称|节目时长|播放位置|
 		 * */
-		append(NumericTools.int2hexString(DetectorEvent.PLAY_QUIT.ordinal()));
+		append(NumericTools.int2String(DetectorEvent.PLAY_QUIT.ordinal()));
 		append(pb.getUrl());
 		append(pb.getName());
 		append(Integer.toString(pb.getDuration()));
@@ -89,7 +89,7 @@ public class DetectorHangYan extends DetectorBase {
 		/*
 规范：事件类型|视频URL|节目名称|节目时长|播放位置|
 		 * */
-		append(NumericTools.int2hexString(DetectorEvent.PLAY_QUIT.ordinal()));
+		append(NumericTools.int2String(DetectorEvent.PLAY_QUIT.ordinal()));
 		append(pb.getUrl());
 		append(pb.getName());
 		append(Integer.toString(pb.getDuration()));
@@ -98,15 +98,14 @@ public class DetectorHangYan extends DetectorBase {
 	}
 
 	@Override
-	public void seekEnd(ProgramBeans pb, int startPos, int endPos) {
+	public void seekEnd(ProgramBeans pb, int endPos) {
 		/*
 规范：事件类型|视频URL|节目名称|节目时长|起始位置|终止位置|
 		 * */
-		append(NumericTools.int2hexString(DetectorEvent.PLAY_QUIT.ordinal()));
+		append(NumericTools.int2String(DetectorEvent.PLAY_QUIT.ordinal()));
 		append(pb.getUrl());
 		append(pb.getName());
 		append(Integer.toString(pb.getDuration()));
-		append(Integer.toString(startPos));
 		append(Integer.toString(endPos));
 		report();
 	}
@@ -116,7 +115,7 @@ public class DetectorHangYan extends DetectorBase {
 		/*
 规范：事件类型|视频URL|节目名称|节目时长|位置|
 		 * */
-		append(NumericTools.int2hexString(DetectorEvent.PLAY_QUIT.ordinal()));
+		append(NumericTools.int2String(DetectorEvent.PLAY_QUIT.ordinal()));
 		append(pb.getUrl());
 		append(pb.getName());
 		append(Integer.toString(pb.getDuration()));
@@ -129,7 +128,7 @@ public class DetectorHangYan extends DetectorBase {
 		/*
 规范：事件类型|视频URL|节目名称|节目时长|
 		 * */
-		append(NumericTools.int2hexString(DetectorEvent.PLAY_QUIT.ordinal()));
+		append(NumericTools.int2String(DetectorEvent.PLAY_QUIT.ordinal()));
 		append(pb.getUrl());
 		append(pb.getName());
 		append(Integer.toString(pb.getDuration()));
@@ -141,7 +140,7 @@ public class DetectorHangYan extends DetectorBase {
 		/*
 规范：事件类型|视频URL|节目名称|节目时长|位置|
 		 * */
-		append(NumericTools.int2hexString(DetectorEvent.PLAY_QUIT.ordinal()));
+		append(NumericTools.int2String(DetectorEvent.PLAY_QUIT.ordinal()));
 		append(pb.getUrl());
 		append(pb.getName());
 		append(Integer.toString(pb.getDuration()));
@@ -154,7 +153,7 @@ public class DetectorHangYan extends DetectorBase {
 		/*
 规范：事件类型|视频URL|节目名称|节目时长|位置|
 		 * */
-		append(NumericTools.int2hexString(DetectorEvent.PLAY_QUIT.ordinal()));
+		append(NumericTools.int2String(DetectorEvent.PLAY_QUIT.ordinal()));
 		append(pb.getUrl());
 		append(pb.getName());
 		append(Integer.toString(pb.getDuration()));
@@ -167,7 +166,7 @@ public class DetectorHangYan extends DetectorBase {
 		/*
 规范：事件类型|
 		 * */
-		append(NumericTools.int2hexString(DetectorEvent.PLAY_QUIT.ordinal()));
+		append(NumericTools.int2String(DetectorEvent.PLAY_QUIT.ordinal()));
 		report();
 	}
 
@@ -175,8 +174,8 @@ public class DetectorHangYan extends DetectorBase {
 		append(pb.getUrl());
 		append(pb.getName());
 		append(Integer.toString(pb.getDuration()));
-		append(NumericTools.int2hexString(pb.getPixel().ordinal()));
-		append(NumericTools.int2hexString(pb.getPgtype().ordinal()));
+		append(NumericTools.int2String(pb.getPixel().ordinal()));
+		append(NumericTools.int2String(pb.getPgtype().ordinal()));
 		append(Boolean.toString(pb.isRecommended()));
 		append(Long.toString(pb.getUpLineTime()));
 	}

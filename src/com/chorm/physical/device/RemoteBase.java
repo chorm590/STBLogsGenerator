@@ -23,15 +23,21 @@ public abstract class RemoteBase implements Remote {
 	 * 将事件发送到机顶盒去。
 	 * */
 	@Override
-	public void launchIR(int keyvalue, boolean isDown) {
+	public void launchIR(int keyvalue, boolean isDown, Object obj) {
 		if(remoteListener != null)
-			remoteListener.remote(keyvalue, isDown);
+			remoteListener.remote(keyvalue, isDown, obj);
 		else
 			Log.info(TAG, "remote listener null");
 	}
 	
 	public interface RemoteListener {
-		void remote(int keyvalue, boolean isDown);
+		void remote(int keyvalue, boolean isDown, Object obj);
+	}
+	
+	@Override
+	public void key(int keyvalue, Object obj) {
+		keyDown(keyvalue, obj);
+		keyUp(keyvalue, obj);
 	}
 
 }

@@ -23,4 +23,9 @@ public class Controls {
 	 * */
 	public static final int PERSON_FAV_LABEL_MIN = 2;
 	public static final int PERSON_FAV_LABEL_MAX = 5; //2019-02-05,upper limit is 8.
+	
+	/**
+	 * 你要测试的家庭数量。
+	 * */
+	public static final int FAMILY_AMOUNT = 1; //2019-02-05 14:58
 }

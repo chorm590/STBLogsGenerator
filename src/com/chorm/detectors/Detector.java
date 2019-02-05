@@ -24,9 +24,9 @@ public interface Detector {
 	
 	void playReport(ProgramBeans pb, int position);
 	
-	void seekStart(ProgramBeans pb, int position);
+	void seekStart(ProgramBeans pb, int startPos);
 	
-	void seekEnd(ProgramBeans pb, int startPos, int endPos);
+	void seekEnd(ProgramBeans pb, int endPos);
 	
 	void bufferStart(ProgramBeans pb, int position);
 	

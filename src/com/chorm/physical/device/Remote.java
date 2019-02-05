@@ -6,10 +6,12 @@ package com.chorm.physical.device;
  * */
 public interface Remote {
 
-	void launchIR(int keyvalue, boolean isDown);
+	void launchIR(int keyvalue, boolean isDown, Object obj);
 	
-	void keyDown(int keyvalue);
+	void keyDown(int keyvalue, Object obj);
 	
-	void keyUp(int keyvalue);
+	void keyUp(int keyvalue, Object obj);
+	
+	void key(int keyvalue, Object obj);
 	
 }

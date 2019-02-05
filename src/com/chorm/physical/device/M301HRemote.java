@@ -6,13 +6,13 @@ package com.chorm.physical.device;
 public class M301HRemote extends RemoteBase {
 
 	@Override
-	public void keyDown(int keyvalue) {
-		launchIR(keyvalue, true);
+	public void keyDown(int keyvalue, Object obj) {
+		launchIR(keyvalue, true, obj);
 	}
 
 	@Override
-	public void keyUp(int keyvalue) {
-		launchIR(keyvalue, false);
+	public void keyUp(int keyvalue, Object obj) {
+		launchIR(keyvalue, false, obj);
 	}
 
 }

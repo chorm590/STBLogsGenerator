@@ -19,6 +19,6 @@ public interface Player {
 	
 	void resume(ProgramBeans pb);
 	
-	void keyevent(int keyvalue, boolean isDown);
+	void keyevent(int keyvalue, boolean isDown, Object obj);
 	
 }
