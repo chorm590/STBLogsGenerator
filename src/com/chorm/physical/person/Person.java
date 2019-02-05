@@ -35,7 +35,9 @@ public class Person {
 		setFavLabel();
 		//Do you want to watch tv?
 		watchTVThread = new Timer();
-		watchTVThread.schedule(new WatchTV(), RandomTool.randomInt(30000, 120000)/*30s~120s*/, 5000/*5s*/);
+		watchTVThread.schedule(new WatchTV(), RandomTool.randomInt(Controls.PERSON_WATCH_TV_DELAY_MIN,
+				Controls.PERSON_WATCH_TV_DELAY_MAX),
+				Controls.PERSON_WATCH_TV_PERIOD);
 	}
 
 	/**
@@ -88,7 +90,7 @@ public class Person {
 		int whichOne = RandomTool.randomInt(0, favLabelAmount);
 		Log.info(TAG, "favLabelAmount:" + favLabelAmount + ",whichOne:" + whichOne);
 		ProgramType pgtype = null;
-		for(int i = 0; i < whichOne; i ++) {
+		for(int i = 0; i <= whichOne; i++) {
 			pgtype = mIterator.next();
 		}
 		Log.info(TAG, "Random choose ProgramType:" + pgtype);

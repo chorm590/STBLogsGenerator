@@ -28,4 +28,12 @@ public class Controls {
 	 * 你要测试的家庭数量。
 	 * */
 	public static final int FAMILY_AMOUNT = 1; //2019-02-05 14:58
+	
+	/**
+	 * 家庭成员实例化后执行看电视任务的相关延时值。
+	 * */
+	public static final int PERSON_WATCH_TV_PERIOD = 5000; // 5s
+	public static final int PERSON_WATCH_TV_DELAY_MIN = 3000; // 30s
+	public static final int PERSON_WATCH_TV_DELAY_MAX = 1200; // 120s
+	
 }

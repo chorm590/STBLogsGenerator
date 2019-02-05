@@ -88,10 +88,11 @@ public class M301HPlayer extends PlayerBase {
 				sm == PlayerStateMachine.SEEKING) {
 			counter = 0;
 			//Go to play video.
-			if(mTimer != null)
+			if(mTimer != null) {
 				mTimer.cancel(); //Guarantee only 1 TimerTask running in one player daemon.
+			}
 			mTimer = new Timer();
-			mTimer.schedule(this, 256, 1000);
+			mTimer.schedule(new PlayTimerTask(), 256, 1000);
 			pb.setCurrentPosition(position);
 			currentPb = pb;
 			Log.info(TAG, pb.getName() + ":" + pb.getUrl() + " is playing...");
@@ -127,8 +128,8 @@ public class M301HPlayer extends PlayerBase {
 		
 		if(sm == PlayerStateMachine.PLAYING) {
 			sm = PlayerStateMachine.SEEKING;
-			mTimer.cancel();
-			mTimer = null;
+			if(mTimer != null)
+				mTimer.cancel(); // Cancel the PlayTimerTask,begin to task SeekTimerTask.
 			mTimer = new Timer();
 			mTimer.schedule(new SeekTimerTask(), 0, 1000);
 			stb.getDetector().seekStart(pb, currentPb.getCurrentPosition());
@@ -150,23 +151,25 @@ public class M301HPlayer extends PlayerBase {
 		// TODO 
 	}
 	
-	/**
-	 * 把它当成TimerTask来用就好啦。
-	 * chorm on 2019-02-04 11:01.
-	 * */
-	@Override
-	public void run() {
-		Log.info(TAG, "Playing " + currentPb.getName() + "," + Integer.toString(counter++));
-		currentPb.setCurrentPosition(currentPb.getCurrentPosition() + 1000);
-		if(currentPb.getCurrentPosition() >= currentPb.getDuration()) {
-			// Current video end.
-			currentPb.setCurrentPosition(currentPb.getDuration()); //Gracefully report to detector server.
-			Log.info(TAG, "duration:" + Integer.toString(currentPb.getCurrentPosition()));
-			quit(currentPb);
-			mTimer.cancel();
-			mTimer = null;
-		}else {
-			Log.info(TAG, "duration:" + Integer.toString(currentPb.getCurrentPosition()));
+	private class PlayTimerTask extends TimerTask {
+		/**
+		 * 把它当成TimerTask来用就好啦。
+		 * chorm on 2019-02-04 11:01.
+		 * */
+		@Override
+		public void run() {
+			Log.info(TAG, "Playing " + currentPb.getName() + "," + Integer.toString(counter++));
+			currentPb.setCurrentPosition(currentPb.getCurrentPosition() + 1000);
+			if(currentPb.getCurrentPosition() >= currentPb.getDuration()) {
+				// Current video end.
+				currentPb.setCurrentPosition(currentPb.getDuration()); //Gracefully report to detector server.
+				Log.info(TAG, "duration:" + Integer.toString(currentPb.getCurrentPosition()));
+				quit(currentPb);
+				mTimer.cancel();
+				mTimer = null;
+			}else {
+				Log.info(TAG, "duration:" + Integer.toString(currentPb.getCurrentPosition()));
+			}
 		}
 	}
 	
