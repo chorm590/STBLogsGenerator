@@ -118,6 +118,11 @@ public class Person {
 		
 		return pb;
 	}
+	
+	private void releaseSTB() {
+		stb = null;
+		mFamily.releaseSTB(this);
+	}
 
 	private class WatchTV extends TimerTask {
 		
@@ -131,9 +136,16 @@ public class Person {
 					Person.this.watchtv(Person.this.mFamily.useSTB(Person.this));
 				}
 			}else {
+				if(stb == null)
+					return; //You don't have the use right of stb,so you don't need to check all below.
 				//当前播放器的状态。
 				psm = ((PlayerBase)(Person.this.stb.getPlayer())).getPlayerStateMachine();
 				Log.info(TAG, "playerstatemachine:" + psm);
+				if(psm == PlayerStateMachine.STOPPED
+						&& stb != null/*只有当有在看的人才有权利决定自己后面是否还要看，即是否要释放盒子使用权。*/) {
+					Log.info(TAG, "I don't want to watch again.");
+					releaseSTB();
+				}
 				
 				// -- 1 -- End seek.
 				if(psm == PlayerStateMachine.SEEKING
@@ -147,7 +159,7 @@ public class Person {
 					Person.this.stb.getRemote().key(M301HKeyEvent.KEYCODE_BACK.ordinal(), null); //quit the program.
 					isWatching = false;
 					// Release the stb using.
-					mFamily.releaseSTB(Person.this);
+					releaseSTB();
 				}
 				// -- 3 -- seek
 				else if(psm == PlayerStateMachine.PLAYING

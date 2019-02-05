@@ -101,6 +101,10 @@ public abstract class STB implements RemoteListener {
 		return isRunning;
 	}
 	
+	protected void playEnd() {
+		
+	}
+	
 	/**
 	 * 接收来自遥控器的事件。
 	 * */

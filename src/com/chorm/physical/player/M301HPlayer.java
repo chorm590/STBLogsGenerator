@@ -158,15 +158,16 @@ public class M301HPlayer extends PlayerBase {
 		 * */
 		@Override
 		public void run() {
-			Log.info(TAG, "Playing " + currentPb.getName() + "," + Integer.toString(counter++));
+			Log.info(TAG, "Playing " + currentPb.getName() + " > " + Integer.toString(counter++));
 			currentPb.setCurrentPosition(currentPb.getCurrentPosition() + 1000);
 			if(currentPb.getCurrentPosition() >= currentPb.getDuration()) {
 				// Current video end.
 				currentPb.setCurrentPosition(currentPb.getDuration()); //Gracefully report to detector server.
-				Log.info(TAG, "duration:" + Integer.toString(currentPb.getCurrentPosition()));
+				Log.info(TAG, ">>> Play end! duration:" + Integer.toString(currentPb.getCurrentPosition()));
 				quit(currentPb);
 				mTimer.cancel();
 				mTimer = null;
+				// Person sure whether STB is release through statemachine.
 			}else {
 				Log.info(TAG, "duration:" + Integer.toString(currentPb.getCurrentPosition()));
 			}
