@@ -118,6 +118,8 @@ public class Person {
 	}
 
 	private class WatchTV extends TimerTask {
+		
+		PlayerStateMachine psm;
 
 		@Override
 		public void run() {
@@ -127,15 +129,18 @@ public class Person {
 					Person.this.watchtv(Person.this.mFamily.useSTB(Person.this));
 				}
 			}else {
+				//当前播放器的状态。
+				psm = ((PlayerBase)(Person.this.stb.getPlayer())).getPlayerStateMachine();
+				Log.info(TAG, "playerstatemachine:" + psm);
+				
 				// -- 1 -- End seek.
-				if(isWatching &&
-					((PlayerBase)(Person.this.stb.getPlayer())).getPlayerStateMachine() == PlayerStateMachine.SEEKING) {
-					if(RandomTool.randomPercentage() < 70) { // 70% probability end seeking...
-						Person.this.stb.getRemote().key(M301HKeyEvent.KEYCODE_CENTER.ordinal(), null); // End the seeking.
-					}
+				if(psm == PlayerStateMachine.SEEKING
+						&& RandomTool.randomPercentage() < 70) { // 70% probability end seeking...
+					Person.this.stb.getRemote().key(M301HKeyEvent.KEYCODE_CENTER.ordinal(), null); // End the seeking.
 				}
 				// -- 2-- quit
-				else if(isWatching && RandomTool.randomPercentage() < 50) { //50% probability want to release tv.
+				else if(psm == PlayerStateMachine.PLAYING
+						&& RandomTool.randomPercentage() < 50) { //50% probability want to release tv.
 					Log.info(TAG, "Quit the program.");
 					Person.this.stb.getRemote().key(M301HKeyEvent.KEYCODE_BACK.ordinal(), null); //quit the program.
 					isWatching = false;
@@ -143,7 +148,8 @@ public class Person {
 					mFamily.releaseSTB(Person.this);
 				}
 				// -- 3 -- seek
-				else if(isWatching && RandomTool.randomPercentage() < 7) {
+				else if(psm == PlayerStateMachine.PLAYING
+						&& RandomTool.randomPercentage() < 7) {
 					Log.info(TAG, "Seek the program.");
 					Person.this.stb.getRemote().key(M301HKeyEvent.KEYCODE_RIGHT.ordinal(), null); //seek to right side.
 				}
