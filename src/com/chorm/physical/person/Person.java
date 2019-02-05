@@ -122,6 +122,7 @@ public class Person {
 	private void releaseSTB() {
 		stb = null;
 		mFamily.releaseSTB(this);
+		isWatching = false;
 	}
 
 	private class WatchTV extends TimerTask {
@@ -157,7 +158,6 @@ public class Person {
 						&& RandomTool.randomPercentage() < 50) { //50% probability want to release tv.
 					Log.info(TAG, "Quit the program.");
 					Person.this.stb.getRemote().key(M301HKeyEvent.KEYCODE_BACK.ordinal(), null); //quit the program.
-					isWatching = false;
 					// Release the stb using.
 					releaseSTB();
 				}
