@@ -30,7 +30,7 @@ public class Person {
 	
 	public Person(Family family) {
 		TAG = "Person 0x" + Integer.toHexString(this.hashCode());
-		Log.info(TAG, "newing Person...");
+//		Log.info(TAG, "newing Person...");
 		mFamily = family;
 		setFavLabel();
 		//Do you want to watch tv?
@@ -56,7 +56,7 @@ public class Person {
 			favLabels.add(null); //null fav label mean can access any type of program.
 		}
 		
-		Log.info(TAG, "Favourite label amount:" + labelAmount);
+//		Log.info(TAG, "Favourite label amount:" + labelAmount);
 	}
 	
 	public Set<ProgramType> getFavLabel(){
@@ -88,12 +88,12 @@ public class Person {
 		Iterator<ProgramType> mIterator = favLabels.iterator();
 		int favLabelAmount = favLabels.size();
 		int whichOne = RandomTool.randomInt(0, favLabelAmount);
-		Log.info(TAG, "favLabelAmount:" + favLabelAmount + ",whichOne:" + whichOne);
+//		Log.info(TAG, "favLabelAmount:" + favLabelAmount + ",whichOne:" + whichOne);
 		ProgramType pgtype = null;
 		for(int i = 0; i <= whichOne; i++) {
 			pgtype = mIterator.next();
 		}
-		Log.info(TAG, "Random choose ProgramType:" + pgtype);
+//		Log.info(TAG, "Random choose ProgramType:" + pgtype);
 		
 		// Choose a program from the STB program list by this pgtype.
 		Set<ProgramBeans> programs = stb.getPrograms();
@@ -131,7 +131,7 @@ public class Person {
 
 		@Override
 		public void run() {
-			Log.info(TAG, "WatchTV,isWatching:" + isWatching);
+//			Log.info(TAG, "WatchTV,isWatching:" + isWatching);
 			if(!isWatching) {
 				if(RandomTool.randomPercentage() < 20) { // 20% probability wanna watch tv.
 					Person.this.watchtv(Person.this.mFamily.useSTB(Person.this));
@@ -141,7 +141,7 @@ public class Person {
 					return; //You don't have the use right of stb,so you don't need to check all below.
 				//当前播放器的状态。
 				psm = ((PlayerBase)(Person.this.stb.getPlayer())).getPlayerStateMachine();
-				Log.info(TAG, "playerstatemachine:" + psm);
+//				Log.info(TAG, "playerstatemachine:" + psm);
 				if(psm == PlayerStateMachine.STOPPED
 						&& stb != null/*只有当有在看的人才有权利决定自己后面是否还要看，即是否要释放盒子使用权。*/) {
 					Log.info(TAG, "I don't want to watch again.");

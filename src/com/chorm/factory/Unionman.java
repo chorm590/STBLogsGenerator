@@ -45,7 +45,6 @@ public class Unionman extends STBFactory {
 			((M301HPlayer)(stb.getPlayer())).setSTB(stb);
 			// Register STB serial and mac.
 			stb.getDetector().registerSerialMac(stb.getSerial(), stb.getMac());
-			
 			stbList.add(stb);
 		}
 		return stbList;

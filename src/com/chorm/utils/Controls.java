@@ -16,7 +16,7 @@ public class Controls {
 	/**
 	 * 湖北移动运营商向厂家定制的机顶盒数量。
 	 * */
-	public static final int HB_CMCC_STB_AMOUNT = 10;
+	public static final int HB_CMCC_STB_AMOUNT = 10000 * 10;
 	
 	/**
 	 * 每个人喜欢看的节目类型。
