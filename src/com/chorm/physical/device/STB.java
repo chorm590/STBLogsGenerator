@@ -102,7 +102,23 @@ public abstract class STB implements RemoteListener {
 	}
 	
 	protected void playEnd() {
-		
+		// TODO ??? why i set this method??? 2019-02-06 17:21.
+	}
+	
+	public String getSerial() {
+		return serial;
+	}
+	
+	public String getMac() {
+		return mac;
+	}
+	
+	public String getHardwareVersion() {
+		return hardwareVersion;
+	}
+	
+	public String getSoftwareVersion() {
+		return softwareVersion;
 	}
 	
 	/**

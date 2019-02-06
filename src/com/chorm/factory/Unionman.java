@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.chorm.detectors.Detector;
 import com.chorm.detectors.DetectorHangYan;
+import com.chorm.detectors.DetectorServerHangYan;
 import com.chorm.operator.APKOperator;
 import com.chorm.others.Province;
 import com.chorm.physical.device.M301HRemote;
@@ -16,9 +17,21 @@ import com.chorm.random.RandomTool;
 import com.chorm.utils.TimeTools;
 
 public class Unionman extends STBFactory {
+
+	/**
+	 * 9 bytes, in hex character.
+	 * AABBCCCCC
+	 * 
+	 * AA  		-->  manufacture code.
+	 * BB		-->  hardware code.
+	 * CCCCC	-->  software code. 
+	 * */
+	private static final String MANUFACTURE_CODE = "37060002A";
+	
+	private static final String AREA_CODE = "F3";
 	
 	private final StringBuilder sb = new StringBuilder();
-
+	
 	@Override
 	public List<STB> createSTB(int amount) {
 		STB stb;
@@ -30,6 +43,8 @@ public class Unionman extends STBFactory {
 			((M301HRemote)(stb.getRemote())).registerSTBListener(stb);
 			//Register STB to player.
 			((M301HPlayer)(stb.getPlayer())).setSTB(stb);
+			// Register STB serial and mac.
+			stb.getDetector().registerSerialMac(stb.getSerial(), stb.getMac());
 			
 			stbList.add(stb);
 		}
@@ -110,6 +125,9 @@ public class Unionman extends STBFactory {
 
 	@Override
 	protected Detector prebuildDetector() {
+		DetectorServerHangYan.getInstance().getDetectorInfo().setApkCode(DetectorHangYan.CODE);
+		DetectorServerHangYan.getInstance().getDetectorInfo().setAreaCode(AREA_CODE + Integer.toHexString(RandomTool.randomPercentage()));
+		DetectorServerHangYan.getInstance().getDetectorInfo().setManufactureCode(MANUFACTURE_CODE);
 		return new DetectorHangYan();
 	}
 

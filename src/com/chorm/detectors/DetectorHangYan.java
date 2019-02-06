@@ -11,6 +11,10 @@ import com.chorm.utils.TimeTools;
  * */
 public class DetectorHangYan extends DetectorBase {
 	
+	public static final String CODE = "27"; //In hex string.
+	
+	private String serial;
+	private String mac;
 	
 	public DetectorHangYan() {
 		super(DetectorType.HANGYAN);
@@ -76,7 +80,7 @@ public class DetectorHangYan extends DetectorBase {
 		/*
 规范：事件类型|视频URL|节目名称|节目时长|播放位置|
 		 * */
-		append(NumericTools.int2String(DetectorEvent.PLAY_QUIT.ordinal()));
+		append(NumericTools.int2String(DetectorEvent.PLAY_REPORT.ordinal()));
 		append(pb.getUrl());
 		append(pb.getName());
 		append(Integer.toString(pb.getDuration()));
@@ -89,7 +93,7 @@ public class DetectorHangYan extends DetectorBase {
 		/*
 规范：事件类型|视频URL|节目名称|节目时长|播放位置|
 		 * */
-		append(NumericTools.int2String(DetectorEvent.PLAY_QUIT.ordinal()));
+		append(NumericTools.int2String(DetectorEvent.SEEK_START.ordinal()));
 		append(pb.getUrl());
 		append(pb.getName());
 		append(Integer.toString(pb.getDuration()));
@@ -102,7 +106,7 @@ public class DetectorHangYan extends DetectorBase {
 		/*
 规范：事件类型|视频URL|节目名称|节目时长|起始位置|终止位置|
 		 * */
-		append(NumericTools.int2String(DetectorEvent.PLAY_QUIT.ordinal()));
+		append(NumericTools.int2String(DetectorEvent.SEEK_END.ordinal()));
 		append(pb.getUrl());
 		append(pb.getName());
 		append(Integer.toString(pb.getDuration()));
@@ -115,7 +119,7 @@ public class DetectorHangYan extends DetectorBase {
 		/*
 规范：事件类型|视频URL|节目名称|节目时长|位置|
 		 * */
-		append(NumericTools.int2String(DetectorEvent.PLAY_QUIT.ordinal()));
+		append(NumericTools.int2String(DetectorEvent.BUFFER_START.ordinal()));
 		append(pb.getUrl());
 		append(pb.getName());
 		append(Integer.toString(pb.getDuration()));
@@ -128,7 +132,7 @@ public class DetectorHangYan extends DetectorBase {
 		/*
 规范：事件类型|视频URL|节目名称|节目时长|
 		 * */
-		append(NumericTools.int2String(DetectorEvent.PLAY_QUIT.ordinal()));
+		append(NumericTools.int2String(DetectorEvent.BUFFER_END.ordinal()));
 		append(pb.getUrl());
 		append(pb.getName());
 		append(Integer.toString(pb.getDuration()));
@@ -140,7 +144,7 @@ public class DetectorHangYan extends DetectorBase {
 		/*
 规范：事件类型|视频URL|节目名称|节目时长|位置|
 		 * */
-		append(NumericTools.int2String(DetectorEvent.PLAY_QUIT.ordinal()));
+		append(NumericTools.int2String(DetectorEvent.PAUSE_MESSAGE.ordinal()));
 		append(pb.getUrl());
 		append(pb.getName());
 		append(Integer.toString(pb.getDuration()));
@@ -153,7 +157,7 @@ public class DetectorHangYan extends DetectorBase {
 		/*
 规范：事件类型|视频URL|节目名称|节目时长|位置|
 		 * */
-		append(NumericTools.int2String(DetectorEvent.PLAY_QUIT.ordinal()));
+		append(NumericTools.int2String(DetectorEvent.RESUME_MESSAGE.ordinal()));
 		append(pb.getUrl());
 		append(pb.getName());
 		append(Integer.toString(pb.getDuration()));
@@ -166,7 +170,7 @@ public class DetectorHangYan extends DetectorBase {
 		/*
 规范：事件类型|
 		 * */
-		append(NumericTools.int2String(DetectorEvent.PLAY_QUIT.ordinal()));
+		append(NumericTools.int2String(DetectorEvent.PLAY_LIVE.ordinal()));
 		report();
 	}
 
@@ -178,6 +182,22 @@ public class DetectorHangYan extends DetectorBase {
 		append(NumericTools.int2String(pb.getPgtype().ordinal()));
 		append(Boolean.toString(pb.isRecommended()));
 		append(Long.toString(pb.getUpLineTime()));
+	}
+
+	@Override
+	public void registerSerialMac(String serial, String mac) {
+		this.serial = serial;
+		this.mac = mac;
+	}
+
+	@Override
+	public String getSTBSerial() {
+		return serial;
+	}
+
+	@Override
+	public String getSTBMac() {
+		return mac;
 	}
 
 }

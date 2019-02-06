@@ -4,6 +4,7 @@ public enum DetectorEvent {
 	PLAY_PREPARE  ,
 	PLAY_START    ,
 	SEEK_START    ,
+	SEEK_END,
 	PAUSE_MESSAGE ,
 	RESUME_MESSAGE, //4
 	BUFFER_START  ,

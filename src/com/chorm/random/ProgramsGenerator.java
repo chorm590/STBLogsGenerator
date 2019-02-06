@@ -136,6 +136,7 @@ public class ProgramsGenerator implements Random<ProgramBeans> {
 		}
 		
 		return duration;
+//		return duration * 1000; //Return in millisecond.
 	}
 
 	private String generateUrl() {

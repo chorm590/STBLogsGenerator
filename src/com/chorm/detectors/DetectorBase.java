@@ -1,7 +1,7 @@
 package com.chorm.detectors;
 
 import com.chorm.others.DetectorType;
-import com.chorm.utils.Log;
+//import com.chorm.utils.Log;
 
 public abstract class DetectorBase implements Detector {
 	
@@ -23,10 +23,15 @@ public abstract class DetectorBase implements Detector {
 
 	@Override
 	public void report() {
-		byte buf[] = sbDetectorEvent.toString().getBytes();
-		// 将探针内容上报给探针服务器。
-		// 这里仅将它输出到文件即可。
-		Log.info(TAG, new String(buf, 0, buf.length) + " , length:" + buf.length);
+//		byte buf[] = sbDetectorEvent.toString().getBytes();
+//		// 将探针内容上报给探针服务器。
+//		// 这里仅将它输出到文件即可。
+//		Log.info(TAG, new String(buf, 0, buf.length) + " , length:" + buf.length);
+		
+		if(getSTBSerial() == null || getSTBMac() == null)
+			throw new IllegalStateException("You havn't set the 'serial' or 'mac' yet.");
+		
+		DetectorServerHangYan.getInstance().report(getSTBSerial(), getSTBMac(), sbDetectorEvent.toString());
 		
 		sbDetectorEvent.delete(0, sbDetectorEvent.length());
 	}

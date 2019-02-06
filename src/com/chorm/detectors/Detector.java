@@ -10,6 +10,9 @@ public interface Detector {
 	
 	char SEPARATOR = '|';
 
+	/**
+	 * Report the detector event to detector server.
+	 * */
 	void report();
 	
 	void bootup(String serial, String mac);
@@ -37,4 +40,11 @@ public interface Detector {
 	void resumeMessage(ProgramBeans pb, int position);
 	
 	void playLive(ProgramBeans pb);
+	
+	void registerSerialMac(String serial, String mac);
+	
+	String getSTBSerial();
+	
+	String getSTBMac();
+	
 }

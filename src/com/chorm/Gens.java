@@ -15,7 +15,16 @@ public class Gens {
 //		new MyTest().playerTest();
 		
 		// How many family do your province have?
-		Family families[] = new Family[Controls.FAMILY_AMOUNT];
+		
+		Family families[];
+		
+		if(args.length > 1) {
+			int amount = Integer.parseInt(args[1]);
+			families = new Family[amount];
+		}else {
+			families = new Family[Controls.FAMILY_AMOUNT];
+		}
+		
 		for(int i = 0; i < families.length; i++) {
 			families[i] = new Family();
 		}

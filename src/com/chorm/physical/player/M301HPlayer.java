@@ -170,6 +170,7 @@ public class M301HPlayer extends PlayerBase {
 				// Person sure whether STB is release through statemachine.
 			}else {
 				Log.info(TAG, "duration:" + Integer.toString(currentPb.getCurrentPosition()));
+				stb.getDetector().playReport(currentPb, currentPb.getCurrentPosition());
 			}
 		}
 	}
