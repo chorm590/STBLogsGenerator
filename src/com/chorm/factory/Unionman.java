@@ -14,6 +14,7 @@ import com.chorm.physical.device.STBM301H;
 import com.chorm.physical.player.M301HPlayer;
 import com.chorm.physical.player.Player;
 import com.chorm.random.RandomTool;
+import com.chorm.utils.NumericTools;
 import com.chorm.utils.TimeTools;
 
 public class Unionman extends STBFactory {
@@ -125,7 +126,7 @@ public class Unionman extends STBFactory {
 	@Override
 	protected Detector prebuildDetector() {
 		DetectorServerHangYan.getInstance().getDetectorInfo().setApkCode(DetectorHangYan.CODE);
-		DetectorServerHangYan.getInstance().getDetectorInfo().setAreaCode(AREA_CODE + Integer.toHexString(RandomTool.randomPercentage()));
+		DetectorServerHangYan.getInstance().getDetectorInfo().setAreaCode(AREA_CODE + NumericTools.int2String(RandomTool.randomPercentage()));
 		DetectorServerHangYan.getInstance().getDetectorInfo().setManufactureCode(MANUFACTURE_CODE);
 		return new DetectorHangYan();
 	}

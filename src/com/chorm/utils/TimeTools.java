@@ -23,6 +23,15 @@ public class TimeTools {
 		return sdf.format(d);
 	}
 	
+	/**
+	 * @return eg: 20190206
+	 * */
+	public static String getDate3() {
+		Date d = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		return sdf.format(d);
+	}
+	
 	public static long currentSeconds() {
 		return System.currentTimeMillis() / 1000;
 	}

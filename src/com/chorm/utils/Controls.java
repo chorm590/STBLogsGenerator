@@ -36,4 +36,19 @@ public class Controls {
 	public static final int PERSON_WATCH_TV_DELAY_MIN = 3000; // 30s
 	public static final int PERSON_WATCH_TV_DELAY_MAX = 1200; // 120s
 	
+	/**
+	 * 日志输出到文件时单个文件大小上限。
+	 * */
+	public static final int FILE_OUTPUT_SIZE_MAXIMUM = 1024 * 1024 * 1; // xMB
+	
+	/**
+	 * 探针日志输出目录。
+	 * 在这个目录下以当前日期创建子目录来保存日志文件。
+	 * */
+	public static final String LOGS_FILES_OUTPUT_DIRECTORY = "/var/bigdata/detector/logs";
+	
+	/**
+	 * 探针日志输出文件的名称前缀。
+	 * */
+	public static final String LOGS_FILENAME_PREFIX = "M301H_UM_HB_";
 }
