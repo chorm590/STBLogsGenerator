@@ -24,19 +24,19 @@ public class Gens {
 		
 //		System.out.println(new File("/var/bigdata/j/k/l/abc").mkdirs());
 		
-//		// How many family do your province have?
-//		Family families[];
-//		System.out.println("args length:" + args.length);
-//		if(args.length == 1) {
-//			int amount = Integer.parseInt(args[0]);
-//			families = new Family[amount];
-//		}else {
-//			families = new Family[Controls.FAMILY_AMOUNT];
-//		}
-//		familiesAmount = families.length;
-//		for(int i = 0; i < families.length; i++) {
-//			families[i] = new Family();
-//		}
+		// How many family do your province have?
+		Family families[];
+		System.out.println("args length:" + args.length);
+		if(args.length == 1) {
+			int amount = Integer.parseInt(args[0]);
+			families = new Family[amount];
+		}else {
+			families = new Family[Controls.FAMILY_AMOUNT];
+		}
+		familiesAmount = families.length;
+		for(int i = 0; i < families.length; i++) {
+			families[i] = new Family();
+		}
 		
 		Log.info(TAG, ">>>>>>> main() end <<<<<<<");
 	}

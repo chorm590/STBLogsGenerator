@@ -1,17 +1,21 @@
 package com.chorm.others;
 
 public enum DetectorEvent {
-	PLAY_PREPARE  ,
+	PLAY_PREPARE  , // >>>>  0  <<<<
 	PLAY_START    ,
-	SEEK_START    ,
-	SEEK_END,
-	PAUSE_MESSAGE ,
-	RESUME_MESSAGE, //4
-	BUFFER_START  ,
-	BUFFER_END    ,
-	PLAY_QUIT     , //7
 	PLAY_REPORT   ,
-	BOOTUP,
-	SHUTDOWN, //10
-	PLAY_LIVE;
+	PLAY_QUIT     , //3
+	PLAY_LIVE,
+	
+	SEEK_START    , //5
+	SEEK_END,
+	
+	PAUSE_MESSAGE , //7
+	RESUME_MESSAGE,
+	
+	BUFFER_START  , //9
+	BUFFER_END    ,
+	
+	BOOTUP,			//11
+	SHUTDOWN;
 }

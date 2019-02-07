@@ -11,7 +11,6 @@ public class GenericFileOutput extends FileOutput {
 
 	private GenericFileOutput(String fnPrefix, CompressType compressType, String storagePath) {
 		super(fnPrefix, compressType, storagePath);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public static GenericFileOutput getInstance() {
@@ -26,12 +25,6 @@ public class GenericFileOutput extends FileOutput {
 		}
 		
 		return mInstance;
-	}
-
-	@Override
-	public void write(String line) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

@@ -135,8 +135,8 @@ public class ProgramsGenerator implements Random<ProgramBeans> {
 //				Log.info(TAG, "fuck!!!!" +duration);
 		}
 		
-//		return duration;
-		return duration * 1000; //Return in millisecond.
+		return duration;
+//		return duration * 1000; //Return in millisecond.
 	}
 
 	private String generateUrl() {

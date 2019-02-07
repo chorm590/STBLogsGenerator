@@ -126,7 +126,7 @@ public abstract class STB implements RemoteListener {
 	 * */
 	@Override
 	public void remote(int keyvalue, boolean isDown, Object obj) {
-		Log.info(TAG, "remote:" + keyvalue + ":" + isDown + ":" + obj);
+//		Log.info(TAG, "remote:" + keyvalue + ":" + isDown + ":" + obj);
 		if(isDown)
 			return;
 		//Only process key up event.

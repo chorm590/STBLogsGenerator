@@ -1,5 +1,6 @@
 package com.chorm.detectors;
 
+import com.chorm.output.GenericFileOutput;
 import com.chorm.utils.Log;
 
 public class DetectorServerHangYan {
@@ -70,7 +71,8 @@ public class DetectorServerHangYan {
 		sb.append(info);
 		
 		// Step 2. print it/save it to file.
-		Log.info(TAG, sb.toString());
+//		Log.info(TAG, sb.toString());
+		GenericFileOutput.getInstance().write(sb.toString());
 	}
 	
 	/**

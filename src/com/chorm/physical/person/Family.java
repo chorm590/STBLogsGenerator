@@ -42,7 +42,7 @@ public class Family {
 
 	private void membersGens() {
 		int memberAmount = RandomTool.randomInt(Controls.FAMILY_MEMBER_MIN, Controls.FAMILY_MEMBER_MAX);
-//		Log.info(TAG, "member amount:" + memberAmount);
+		Log.info(TAG, "member amount:" + memberAmount);
 		Person mPerson;
 		for(int i = 0; i < memberAmount; i++) {
 			mPerson = new Person(this);
