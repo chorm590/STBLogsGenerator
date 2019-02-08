@@ -8,7 +8,7 @@ import com.chorm.others.ProgramBeans;
  * */
 public interface Detector {
 	
-	char SEPARATOR = '|';
+	char SEPARATOR = '#';
 
 	/**
 	 * Report the detector event to detector server.
