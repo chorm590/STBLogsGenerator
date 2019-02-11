@@ -150,12 +150,12 @@ public class Person {
 				
 				// -- 1 -- End seek.
 				if(psm == PlayerStateMachine.SEEKING
-						&& RandomTool.randomPercentage() < 70) { // 70% probability end seeking...
+						&& RandomTool.randomPercentage() < 30) { // 70% probability end seeking...
 					Person.this.stb.getRemote().key(M301HKeyEvent.KEYCODE_CENTER.ordinal(), null); // End the seeking.
 				}
 				// -- 2-- quit
 				else if(psm == PlayerStateMachine.PLAYING
-						&& RandomTool.randomPercentage() < 50) { //50% probability want to release tv.
+						&& RandomTool.randomPercentage() < 20) { //30% probability want to release tv.
 					Log.info(TAG, "Quit the program.");
 					Person.this.stb.getRemote().key(M301HKeyEvent.KEYCODE_BACK.ordinal(), null); //quit the program.
 					// Release the stb using.

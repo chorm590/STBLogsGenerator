@@ -16,11 +16,6 @@ public class M301HPlayer extends PlayerBase {
 	
 	private static final String TAG = "M301HPlayer";
 	
-	/**
-	 * 没有什么实际意义的恶趣味计数器变量。
-	 * */
-	private int counter;
-	
 	private STB stb;
 	/**
 	 * 当前正在播放的视频。
@@ -86,7 +81,6 @@ public class M301HPlayer extends PlayerBase {
 	private void playVideo(ProgramBeans pb, int position) {
 		if(sm == PlayerStateMachine.PREPARED ||
 				sm == PlayerStateMachine.SEEKING) {
-			counter = 0;
 			//Go to play video.
 			if(mTimer != null) {
 				mTimer.cancel(); //Guarantee only 1 TimerTask running in one player daemon.
@@ -116,6 +110,10 @@ public class M301HPlayer extends PlayerBase {
 
 	@Override
 	public void quit(ProgramBeans pb) {
+		if(mTimer != null) {
+			mTimer.cancel();
+			mTimer = null;
+		}
 		sm = PlayerStateMachine.STOPPED;
 //		Log.info(TAG, "stb:" + stb + ",pb:" + pb + ",currentPb:" + currentPb);
 		stb.getDetector().playQuit(pb, pb.getCurrentPosition());
@@ -152,6 +150,8 @@ public class M301HPlayer extends PlayerBase {
 	}
 	
 	private class PlayTimerTask extends TimerTask {
+		
+		private byte counter;
 		/**
 		 * 把它当成TimerTask来用就好啦。
 		 * chorm on 2019-02-04 11:01.
@@ -170,8 +170,12 @@ public class M301HPlayer extends PlayerBase {
 				// Person sure whether STB is release through statemachine.
 			}else {
 //				Log.info(TAG, "duration:" + Integer.toString(currentPb.getCurrentPosition()));
-				stb.getDetector().playReport(currentPb, currentPb.getCurrentPosition());
+				if(counter == 10) {
+					stb.getDetector().playReport(currentPb, currentPb.getCurrentPosition());
+					counter = 0;
+				}
 			}
+			counter++;
 		}
 	}
 	

@@ -5,7 +5,7 @@ public class Controls {
 	/**
 	 * 牌照商提供的视频数量。
 	 * */
-	public static final int PROGRAMS_AMOUNT_LIMIT = 300;
+	public static final int PROGRAMS_AMOUNT_LIMIT = 600;
 	
 	/**
 	 * 家庭成员数量最少最多人数。
@@ -16,7 +16,7 @@ public class Controls {
 	/**
 	 * 湖北移动运营商向厂家定制的机顶盒数量。
 	 * */
-	public static final int HB_CMCC_STB_AMOUNT = 10000 * 10;
+	public static final int HB_CMCC_STB_AMOUNT = 10000 * 1; //max 10 thousand STBs.
 	
 	/**
 	 * 每个人喜欢看的节目类型。
@@ -27,19 +27,19 @@ public class Controls {
 	/**
 	 * 你要测试的家庭数量。
 	 * */
-	public static final int FAMILY_AMOUNT = 1; //2019-02-05 14:58
+	public static final int FAMILY_AMOUNT = 500; //2019-02-11 11:49
 	
 	/**
 	 * 家庭成员实例化后执行看电视任务的相关延时值。
 	 * */
 	public static final int PERSON_WATCH_TV_PERIOD = 5000; // 5s
-	public static final int PERSON_WATCH_TV_DELAY_MIN = 3000; // 30s
-	public static final int PERSON_WATCH_TV_DELAY_MAX = 1200; // 120s
+	public static final int PERSON_WATCH_TV_DELAY_MIN = 30000; // 30s
+	public static final int PERSON_WATCH_TV_DELAY_MAX = 12000; // 120s
 	
 	/**
 	 * 日志输出到文件时单个文件大小上限。
 	 * */
-	public static final int FILE_OUTPUT_SIZE_MAXIMUM = 1024 * 1024 * 1; // xMB
+	public static final int FILE_OUTPUT_SIZE_MAXIMUM = 1024 * 1024 * 126; // xMB
 	
 	/**
 	 * 探针日志输出目录。
